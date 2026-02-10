@@ -1,4 +1,6 @@
 import { ReactElement } from "react";
+import { PageLayout } from "@repo/shared-ui/page-layout";
+import { SuccessBanner } from "@repo/shared-ui/success-banner";
 
 type Props = {
   searchParams: Promise<{ e?: string }>;
@@ -38,18 +40,11 @@ export default async function RscPageRoot({ searchParams }: Props): Promise<Reac
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-6">
-      <div className="max-w-2xl w-full bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="bg-green-50 dark:bg-green-950 border-b border-green-100 dark:border-green-800 px-6 py-4 flex items-center gap-3">
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 text-lg font-bold">
-            ✓
-          </span>
-          <h2 className="text-lg font-semibold text-green-800 dark:text-green-300">Success</h2>
-        </div>
-        <div className="px-6 py-5">
-          <p className="text-gray-900 dark:text-gray-100">{v}</p>
-        </div>
+    <PageLayout>
+      <SuccessBanner />
+      <div className="px-6 py-5">
+        <p className="text-gray-900 dark:text-gray-100">{v}</p>
       </div>
-    </div>
+    </PageLayout>
   );
 }

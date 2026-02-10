@@ -1,4 +1,7 @@
 import { ReactElement, Suspense } from "react";
+import { PageLayout } from "@repo/shared-ui/page-layout";
+import { SuccessBanner } from "@repo/shared-ui/success-banner";
+import { LoadingBanner } from "@repo/shared-ui/loading-banner";
 
 type Props = {
   searchParams: Promise<{ e?: string }>;
@@ -27,9 +30,7 @@ async function AsyncContent({ errorType }: { errorType?: string }): Promise<Reac
       }
       if (errorType === "2") {
         reject(
-          new CustomError(
-            `RSC async error (with Suspense boundary) ${new Date().toISOString()}`,
-          ),
+          new CustomError(`RSC async error (with Suspense boundary) ${new Date().toISOString()}`),
         );
         return;
       }
@@ -38,13 +39,9 @@ async function AsyncContent({ errorType }: { errorType?: string }): Promise<Reac
   });
 
   return (
-    <div className="bg-green-50 dark:bg-green-950 border-b border-green-100 dark:border-green-800 px-6 py-4 flex items-center gap-3">
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 text-lg font-bold">
-        ✓
-      </span>
-      <h2 className="text-lg font-semibold text-green-800 dark:text-green-300">Success</h2>
+    <SuccessBanner>
       <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
-    </div>
+    </SuccessBanner>
   );
 }
 
@@ -54,23 +51,10 @@ export default async function RscPageRoot({ searchParams }: Props) {
   console.log(`RscPageRoot expectError=${errorType} ${new Date().toISOString()}`);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-6">
-      <div className="max-w-2xl w-full bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <Suspense
-          fallback={
-            <div className="bg-blue-50 dark:bg-blue-950 border-b border-blue-100 dark:border-blue-800 px-6 py-4 flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 text-lg font-bold animate-spin">
-                ↻
-              </span>
-              <h2 className="text-lg font-semibold text-blue-800 dark:text-blue-300">
-                Loading...
-              </h2>
-            </div>
-          }
-        >
-          <AsyncContent errorType={errorType} />
-        </Suspense>
-      </div>
-    </div>
+    <PageLayout>
+      <Suspense fallback={<LoadingBanner />}>
+        <AsyncContent errorType={errorType} />
+      </Suspense>
+    </PageLayout>
   );
 }

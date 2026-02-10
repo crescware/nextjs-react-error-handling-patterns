@@ -1,0 +1,17 @@
+{
+  "name": "@repo/shared-ui",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./error-display": "./src/error-display.tsx",
+    "./page-layout": "./src/page-layout.tsx",
+    "./success-banner": "./src/success-banner.tsx",
+    "./loading-banner": "./src/loading-banner.tsx"
+  },
+  "devDependencies": {
+    "@types/react": "^19"
+  },
+  "peerDependencies": {
+    "react": "^19"
+  }
+}

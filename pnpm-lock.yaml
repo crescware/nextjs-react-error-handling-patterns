@@ -14,6 +14,9 @@ importers:
       oxlint:
         specifier: ^1.43.0
         version: 1.43.0
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
 
   cases/async-event-handler-throw:
     dependencies:
@@ -234,6 +237,9 @@ importers:
 
   cases/rsc-with-suspense:
     dependencies:
+      '@repo/shared-ui':
+        specifier: workspace:*
+        version: link:../../shared/shared-ui
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -265,6 +271,9 @@ importers:
 
   cases/rsc-without-suspense:
     dependencies:
+      '@repo/shared-ui':
+        specifier: workspace:*
+        version: link:../../shared/shared-ui
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -448,6 +457,16 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+
+  shared/shared-ui:
+    dependencies:
+      react:
+        specifier: ^19
+        version: 19.2.3
+    devDependencies:
+      '@types/react':
+        specifier: ^19
+        version: 19.2.13
 
 packages:
 
