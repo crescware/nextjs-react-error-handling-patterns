@@ -2,30 +2,37 @@
 
 import { useState } from "react";
 import { CustomError } from "lib/custom-error";
+import { useErrorTrap } from "lib/use-error-trap";
 
 type Props = {
   errorType?: string;
+  enabledTrap: boolean;
 };
 
-export function ErrorTrigger({ errorType }: Props) {
+export function ErrorTrigger({ errorType, enabledTrap }: Props) {
+  const { caughtUp } = useErrorTrap(enabledTrap);
   const [status, setStatus] = useState<{ text: string; loading: boolean } | null>(null);
 
   async function handleClick() {
-    setStatus({ text: "Loading...", loading: true });
-    await new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        if (errorType === "1") {
-          reject(new Error(`Callback async error ${new Date().toISOString()}`));
-          return;
-        }
-        if (errorType === "2") {
-          reject(new CustomError(`Callback async error ${new Date().toISOString()}`));
-          return;
-        }
-        resolve();
-      }, 500);
-    });
-    setStatus({ text: `Success ${new Date().toISOString()}`, loading: false });
+    try {
+      setStatus({ text: "Loading...", loading: true });
+      await new Promise<void>((resolve, reject) => {
+        setTimeout(() => {
+          if (errorType === "1") {
+            reject(new Error(`Callback async error ${new Date().toISOString()}`));
+            return;
+          }
+          if (errorType === "2") {
+            reject(new CustomError(`Callback async error ${new Date().toISOString()}`));
+            return;
+          }
+          resolve();
+        }, 500);
+      });
+      setStatus({ text: `Success ${new Date().toISOString()}`, loading: false });
+    } catch (e) {
+      caughtUp(e);
+    }
   }
 
   return (
