@@ -1,11 +1,38 @@
-import { ReactElement } from "react";
+import { ReactElement, Suspense } from "react";
+import { PageLayout } from "lib/page-layout";
+import { SuccessBanner } from "lib/success-banner";
+import { LoadingBanner } from "lib/loading-banner";
+import { TransitionTrigger } from "./transition-trigger";
 
-export default async function RscPageRoot(): Promise<ReactElement> {
+type Props = {
+  searchParams: Promise<{ e?: string }>;
+};
+
+async function AsyncContent({ errorType }: { errorType?: string }): Promise<ReactElement> {
   const v = await new Promise<string>((resolve) => {
     setTimeout(() => {
       resolve(`hello ${new Date().toISOString()}`);
     }, 1000);
   });
 
-  return <h1>{v}</h1>;
+  return (
+    <>
+      <SuccessBanner>
+        <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+      </SuccessBanner>
+      <TransitionTrigger errorType={errorType} />
+    </>
+  );
+}
+
+export default async function StartTransitionPage({ searchParams }: Props) {
+  const { e: errorType } = await searchParams;
+
+  return (
+    <PageLayout title="start-transition">
+      <Suspense fallback={<LoadingBanner />}>
+        <AsyncContent errorType={errorType} />
+      </Suspense>
+    </PageLayout>
+  );
 }

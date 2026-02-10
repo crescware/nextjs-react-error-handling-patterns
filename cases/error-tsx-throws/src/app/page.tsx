@@ -1,11 +1,43 @@
-import { ReactElement } from "react";
+import { ReactElement, Suspense } from "react";
+import { PageLayout } from "lib/page-layout";
+import { SuccessBanner } from "lib/success-banner";
+import { LoadingBanner } from "lib/loading-banner";
+import { CustomError } from "lib/custom-error";
 
-export default async function RscPageRoot(): Promise<ReactElement> {
-  const v = await new Promise<string>((resolve) => {
+type Props = {
+  searchParams: Promise<{ e?: string }>;
+};
+
+async function AsyncContent({ errorType }: { errorType?: string }): Promise<ReactElement> {
+  const v = await new Promise<string>((resolve, reject) => {
     setTimeout(() => {
+      if (errorType === "1") {
+        reject(new Error(`Page error ${new Date().toISOString()}`));
+        return;
+      }
+      if (errorType === "2") {
+        reject(new CustomError(`Page error ${new Date().toISOString()}`));
+        return;
+      }
       resolve(`hello ${new Date().toISOString()}`);
     }, 1000);
   });
 
-  return <h1>{v}</h1>;
+  return (
+    <SuccessBanner>
+      <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+    </SuccessBanner>
+  );
+}
+
+export default async function ErrorTsxThrowsPage({ searchParams }: Props) {
+  const { e: errorType } = await searchParams;
+
+  return (
+    <PageLayout title="error-tsx-throws">
+      <Suspense fallback={<LoadingBanner />}>
+        <AsyncContent errorType={errorType} />
+      </Suspense>
+    </PageLayout>
+  );
 }

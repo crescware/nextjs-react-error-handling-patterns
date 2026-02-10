@@ -1,8 +1,7 @@
 import { headers } from "next/headers";
 import { CustomError } from "lib/custom-error";
-import "./globals.css";
 
-export default async function RootLayout({
+export default async function SubLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -12,15 +11,11 @@ export default async function RootLayout({
   const errorType = url ? new URL(url).searchParams.get("e") : null;
 
   if (errorType === "1") {
-    throw new Error(`Layout error ${new Date().toISOString()}`);
+    throw new Error(`Nested layout error ${new Date().toISOString()}`);
   }
   if (errorType === "2") {
-    throw new CustomError(`Layout error ${new Date().toISOString()}`);
+    throw new CustomError(`Nested layout error ${new Date().toISOString()}`);
   }
 
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

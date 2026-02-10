@@ -1,11 +1,42 @@
-import { ReactElement } from "react";
+import type { Metadata } from "next";
+import { PageLayout } from "lib/page-layout";
+import { SuccessBanner } from "lib/success-banner";
+import { CustomError } from "lib/custom-error";
 
-export default async function RscPageRoot(): Promise<ReactElement> {
-  const v = await new Promise<string>((resolve) => {
+type Props = {
+  searchParams: Promise<{ e?: string }>;
+};
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { e: errorType } = await searchParams;
+
+  await new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      resolve(`hello ${new Date().toISOString()}`);
-    }, 1000);
+      if (errorType === "1") {
+        reject(new Error(`generateMetadata error ${new Date().toISOString()}`));
+        return;
+      }
+      if (errorType === "2") {
+        reject(new CustomError(`generateMetadata error ${new Date().toISOString()}`));
+        return;
+      }
+      resolve();
+    }, 500);
   });
 
-  return <h1>{v}</h1>;
+  return {
+    title: "generate-metadata-error - Success",
+  };
+}
+
+export default async function GenerateMetadataErrorPage() {
+  const v = `hello ${new Date().toISOString()}`;
+
+  return (
+    <PageLayout title="generate-metadata-error">
+      <SuccessBanner>
+        <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+      </SuccessBanner>
+    </PageLayout>
+  );
 }
