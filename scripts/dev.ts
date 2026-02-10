@@ -1,7 +1,7 @@
 import { select } from "@inquirer/prompts";
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
-import { execSync } from "node:child_process";
+import { spawn, execSync } from "node:child_process";
 
 const casesDir = resolve(import.meta.dirname, "..", "cases");
 
@@ -10,9 +10,42 @@ const cases = readdirSync(casesDir, { withFileTypes: true })
   .map((d) => d.name)
   .sort();
 
-const selected = await select({
-  message: "Select a case to run:",
-  choices: cases.map((name) => ({ name, value: name })),
-});
+async function main(): Promise<void> {
+  let selected: string;
+  try {
+    selected = await select({
+      message: "Select a case to run:",
+      choices: cases.map((name) => ({ name, value: name })),
+      loop: false,
+    });
+  } catch {
+    process.exit(0);
+  }
 
-execSync(`pnpm --filter ${selected} dev`, { stdio: "inherit" });
+  const child = spawn("pnpm", ["--filter", selected, "dev"], {
+    stdio: ["inherit", "pipe", "inherit"],
+  });
+
+  process.on("SIGINT", () => {
+    child.kill("SIGINT");
+    process.exit(0);
+  });
+
+  let opened = false;
+  child.stdout?.on("data", (data: Buffer) => {
+    process.stdout.write(data);
+    if (!opened) {
+      const match = data.toString().match(/http:\/\/localhost:\d+/);
+      if (match) {
+        opened = true;
+        execSync(`open "${match[0]}?e=0&trap=1"`);
+      }
+    }
+  });
+
+  child.on("exit", (code) => {
+    process.exit(code ?? 0);
+  });
+}
+
+main();
