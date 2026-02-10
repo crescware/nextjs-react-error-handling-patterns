@@ -1,11 +1,10 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
 type Props = {
   title?: string;
-  children: ReactNode;
 };
 
-export function PageLayout({ title, children }: Props) {
+export function PageLayout({ title, children }: PropsWithChildren<Props>) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-6">
       {title && (

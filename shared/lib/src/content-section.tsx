@@ -1,9 +1,5 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
-type Props = {
-  children: ReactNode;
-};
-
-export function ContentSection({ children }: Props) {
+export function ContentSection({ children }: PropsWithChildren) {
   return <div className="px-6 py-5">{children}</div>;
 }

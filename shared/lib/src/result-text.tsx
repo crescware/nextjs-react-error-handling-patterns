@@ -1,9 +1,5 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
-type Props = {
-  children: ReactNode;
-};
-
-export function ResultText({ children }: Props) {
+export function ResultText({ children }: PropsWithChildren) {
   return <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{children}</p>;
 }
