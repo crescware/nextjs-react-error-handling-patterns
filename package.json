@@ -8,14 +8,17 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "tsx scripts/dev.ts",
     "format": "oxfmt --write .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "oxlint .",
     "typecheck": "pnpm -r exec tsc --noEmit"
   },
   "devDependencies": {
+    "@inquirer/prompts": "^8.2.0",
     "oxfmt": "^0.28.0",
     "oxlint": "^1.43.0",
+    "tsx": "^4.21.0",
     "typescript": "5.9.3"
   },
   "packageManager": "pnpm@10.28.2"

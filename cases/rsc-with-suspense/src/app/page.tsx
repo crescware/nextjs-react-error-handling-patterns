@@ -40,10 +40,10 @@ export default async function RscPageRoot({ searchParams }: Props) {
   console.log(`RscPageRoot expectError=${errorType} ${new Date().toISOString()}`);
 
   return (
-    <PageLayout>
-      <Suspense fallback={<LoadingBanner />}>
-        <AsyncContent errorType={errorType} />
-      </Suspense>
+    <PageLayout title="rsc-with-suspense">
+        <Suspense fallback={<LoadingBanner />}>
+          <AsyncContent errorType={errorType} />
+        </Suspense>
     </PageLayout>
   );
 }

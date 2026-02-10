@@ -36,10 +36,10 @@ export default async function CallbackAsyncPage({ searchParams }: Props) {
   const enabledTrap = trap === "1";
 
   return (
-    <PageLayout>
-      <Suspense fallback={<LoadingBanner />}>
-        <AsyncContent errorType={errorType} enabledTrap={enabledTrap} />
-      </Suspense>
+    <PageLayout title="callback-async">
+        <Suspense fallback={<LoadingBanner />}>
+          <AsyncContent errorType={errorType} enabledTrap={enabledTrap} />
+        </Suspense>
     </PageLayout>
   );
 }
