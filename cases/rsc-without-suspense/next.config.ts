@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@repo/shared-ui"],
+  transpilePackages: ["lib"],
 };
 
 export default nextConfig;

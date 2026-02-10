@@ -237,9 +237,9 @@ importers:
 
   cases/rsc-with-suspense:
     dependencies:
-      '@repo/shared-ui':
+      lib:
         specifier: workspace:*
-        version: link:../../shared/shared-ui
+        version: link:../../shared/lib
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -271,9 +271,9 @@ importers:
 
   cases/rsc-without-suspense:
     dependencies:
-      '@repo/shared-ui':
+      lib:
         specifier: workspace:*
-        version: link:../../shared/shared-ui
+        version: link:../../shared/lib
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -458,7 +458,7 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  shared/shared-ui:
+  shared/lib:
     dependencies:
       react:
         specifier: ^19

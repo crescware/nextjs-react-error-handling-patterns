@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorDisplay } from "@repo/shared-ui/error-display";
+import { ErrorDisplay } from "lib/error-display";
 
 type Props = {
   error: Error & { digest?: string };

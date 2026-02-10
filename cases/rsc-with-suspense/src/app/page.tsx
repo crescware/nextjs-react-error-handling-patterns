@@ -1,23 +1,12 @@
 import { ReactElement, Suspense } from "react";
-import { PageLayout } from "@repo/shared-ui/page-layout";
-import { SuccessBanner } from "@repo/shared-ui/success-banner";
-import { LoadingBanner } from "@repo/shared-ui/loading-banner";
+import { PageLayout } from "lib/page-layout";
+import { SuccessBanner } from "lib/success-banner";
+import { LoadingBanner } from "lib/loading-banner";
+import { CustomError } from "lib/custom-error";
 
 type Props = {
   searchParams: Promise<{ e?: string }>;
 };
-
-class CustomError extends Error {
-  name = "CustomError";
-
-  constructor(message: string) {
-    super(message);
-  }
-
-  debug(): string {
-    return "hello world";
-  }
-}
 
 async function AsyncContent({ errorType }: { errorType?: string }): Promise<ReactElement> {
   console.log(`AsyncContent expectError=${errorType} ${new Date().toISOString()}`);

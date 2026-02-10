@@ -1,22 +1,11 @@
 import { ReactElement } from "react";
-import { PageLayout } from "@repo/shared-ui/page-layout";
-import { SuccessBanner } from "@repo/shared-ui/success-banner";
+import { PageLayout } from "lib/page-layout";
+import { SuccessBanner } from "lib/success-banner";
+import { CustomError } from "lib/custom-error";
 
 type Props = {
   searchParams: Promise<{ e?: string }>;
 };
-
-class CustomError extends Error {
-  name = "CustomError";
-
-  constructor(message: string) {
-    super(message);
-  }
-
-  debug(): string {
-    return "hello world";
-  }
-}
 
 export default async function RscPageRoot({ searchParams }: Props): Promise<ReactElement> {
   const { e: errorType } = await searchParams;
