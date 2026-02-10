@@ -1,5 +1,5 @@
 {
-  "name": "async-event-handler-throw",
+  "name": "client-use-reject",
   "version": "0.1.0",
   "private": true,
   "scripts": {

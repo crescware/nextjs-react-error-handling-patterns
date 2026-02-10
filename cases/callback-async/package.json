@@ -1,5 +1,5 @@
 {
-  "name": "client-use-promise-reject",
+  "name": "callback-async",
   "version": "0.1.0",
   "private": true,
   "scripts": {
