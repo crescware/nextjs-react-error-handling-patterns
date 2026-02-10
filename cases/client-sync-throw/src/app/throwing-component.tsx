@@ -1,6 +1,8 @@
 "use client";
 
 import { CustomError } from "lib/custom-error";
+import { FooterSection } from "lib/footer-section";
+import { MutedText } from "lib/muted-text";
 
 type Props = {
   errorType?: string;
@@ -15,10 +17,10 @@ export function ThrowingComponent({ errorType }: Props) {
   }
 
   return (
-    <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+    <FooterSection>
+      <MutedText>
         No error triggered. Use <code>?e=1</code> or <code>?e=2</code> to throw during render.
-      </p>
-    </div>
+      </MutedText>
+    </FooterSection>
   );
 }

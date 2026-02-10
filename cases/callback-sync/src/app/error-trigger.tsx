@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { CustomError } from "lib/custom-error";
 import { useErrorTrap } from "lib/use-error-trap";
+import { FooterSection } from "lib/footer-section";
+import { ActionButton } from "lib/action-button";
+import { SuccessText } from "lib/success-text";
 
 type Props = {
   errorType?: string;
@@ -24,14 +27,9 @@ export function ErrorTrigger({ errorType, enabledTrap }: Props) {
   });
 
   return (
-    <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 flex items-center gap-3">
-      <button
-        className="px-5 py-2.5 bg-gray-600 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-gray-700/90 active:bg-gray-700/50 transition-colors"
-        onClick={handleClick}
-      >
-        Trigger sync callback
-      </button>
-      {status && <p className="text-sm text-green-700 dark:text-green-400 ml-auto">{status}</p>}
-    </div>
+    <FooterSection flex>
+      <ActionButton onClick={handleClick}>Trigger sync callback</ActionButton>
+      {status && <SuccessText>{status}</SuccessText>}
+    </FooterSection>
   );
 }

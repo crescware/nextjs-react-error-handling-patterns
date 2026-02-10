@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { CustomError } from "lib/custom-error";
 import { useErrorTrap } from "lib/use-error-trap";
+import { FooterSection } from "lib/footer-section";
+import { LabelText } from "lib/label-text";
+import { SuccessText } from "lib/success-text";
 
 type Props = {
   errorType?: string;
@@ -27,9 +30,9 @@ export function EffectThrower({ errorType, enabledTrap }: Props) {
   }, [errorType, escalate]);
 
   return (
-    <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 flex items-center gap-3">
-      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Effect fired on mount</p>
-      {status && <p className="text-sm text-green-700 dark:text-green-400 ml-auto">{status}</p>}
-    </div>
+    <FooterSection flex>
+      <LabelText>Effect fired on mount</LabelText>
+      {status && <SuccessText>{status}</SuccessText>}
+    </FooterSection>
   );
 }

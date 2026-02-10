@@ -1,5 +1,8 @@
 import { PageLayout } from "lib/page-layout";
 import { SuccessBanner } from "lib/success-banner";
+import { ResultText } from "lib/result-text";
+import { FooterSection } from "lib/footer-section";
+import { NavLink } from "lib/nav-link";
 
 type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -19,16 +22,11 @@ export default async function RootPage({ searchParams }: Props) {
   return (
     <PageLayout title="nested-layout-error">
       <SuccessBanner>
-        <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">Root page loaded.</p>
+        <ResultText>Root page loaded.</ResultText>
       </SuccessBanner>
-      <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-        <a
-          href={href}
-          className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          Navigate to /sub
-        </a>
-      </div>
+      <FooterSection>
+        <NavLink href={href}>Navigate to /sub</NavLink>
+      </FooterSection>
     </PageLayout>
   );
 }

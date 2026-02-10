@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import { SuccessBanner } from "lib/success-banner";
+import { ResultText } from "lib/result-text";
 
 type Props = {
   dataPromise: Promise<string>;
@@ -12,7 +13,7 @@ export function UsePromise({ dataPromise }: Props) {
 
   return (
     <SuccessBanner>
-      <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+      <ResultText>{v}</ResultText>
     </SuccessBanner>
   );
 }

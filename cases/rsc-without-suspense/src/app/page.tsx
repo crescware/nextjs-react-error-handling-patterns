@@ -1,6 +1,8 @@
 import { ReactElement } from "react";
 import { PageLayout } from "lib/page-layout";
 import { SuccessBanner } from "lib/success-banner";
+import { ContentSection } from "lib/content-section";
+import { BodyText } from "lib/body-text";
 import { CustomError } from "lib/custom-error";
 
 type Props = {
@@ -31,9 +33,9 @@ export default async function RscPageRoot({ searchParams }: Props): Promise<Reac
   return (
     <PageLayout title="rsc-without-suspense">
       <SuccessBanner />
-      <div className="px-6 py-5">
-        <p className="text-gray-900 dark:text-gray-100">{v}</p>
-      </div>
+      <ContentSection>
+        <BodyText>{v}</BodyText>
+      </ContentSection>
     </PageLayout>
   );
 }

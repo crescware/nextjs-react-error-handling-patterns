@@ -8,7 +8,18 @@
     "./success-banner": "./src/success-banner.tsx",
     "./loading-banner": "./src/loading-banner.tsx",
     "./custom-error": "./src/custom-error.ts",
-    "./use-error-trap": "./src/use-error-trap.ts"
+    "./use-error-trap": "./src/use-error-trap.ts",
+    "./result-text": "./src/result-text.tsx",
+    "./body-text": "./src/body-text.tsx",
+    "./footer-section": "./src/footer-section.tsx",
+    "./content-section": "./src/content-section.tsx",
+    "./nav-link": "./src/nav-link.tsx",
+    "./action-button": "./src/action-button.tsx",
+    "./loading-text": "./src/loading-text.tsx",
+    "./success-text": "./src/success-text.tsx",
+    "./label-text": "./src/label-text.tsx",
+    "./muted-text": "./src/muted-text.tsx",
+    "./status-text": "./src/status-text.tsx"
   },
   "devDependencies": {
     "@types/react": "^19"

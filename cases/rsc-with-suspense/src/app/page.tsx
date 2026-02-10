@@ -1,6 +1,7 @@
 import { ReactElement, Suspense } from "react";
 import { PageLayout } from "lib/page-layout";
 import { SuccessBanner } from "lib/success-banner";
+import { ResultText } from "lib/result-text";
 import { LoadingBanner } from "lib/loading-banner";
 import { CustomError } from "lib/custom-error";
 
@@ -29,7 +30,7 @@ async function AsyncContent({ errorType }: { errorType?: string }): Promise<Reac
 
   return (
     <SuccessBanner>
-      <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+      <ResultText>{v}</ResultText>
     </SuccessBanner>
   );
 }

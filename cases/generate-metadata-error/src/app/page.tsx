@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageLayout } from "lib/page-layout";
 import { SuccessBanner } from "lib/success-banner";
+import { ResultText } from "lib/result-text";
 import { CustomError } from "lib/custom-error";
 
 type Props = {
@@ -35,7 +36,7 @@ export default async function GenerateMetadataErrorPage() {
   return (
     <PageLayout title="generate-metadata-error">
       <SuccessBanner>
-        <p className="text-gray-900 dark:text-gray-100 ml-auto text-sm">{v}</p>
+        <ResultText>{v}</ResultText>
       </SuccessBanner>
     </PageLayout>
   );
