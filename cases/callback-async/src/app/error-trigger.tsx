@@ -10,30 +10,26 @@ type Props = {
 };
 
 export function ErrorTrigger({ errorType, enabledTrap }: Props) {
-  const { caughtUp } = useErrorTrap(enabledTrap);
+  const { escalateAsync } = useErrorTrap(enabledTrap);
   const [status, setStatus] = useState<{ text: string; loading: boolean } | null>(null);
 
-  async function handleClick() {
-    try {
-      setStatus({ text: "Loading...", loading: true });
-      await new Promise<void>((resolve, reject) => {
-        setTimeout(() => {
-          if (errorType === "1") {
-            reject(new Error(`Callback async error ${new Date().toISOString()}`));
-            return;
-          }
-          if (errorType === "2") {
-            reject(new CustomError(`Callback async error ${new Date().toISOString()}`));
-            return;
-          }
-          resolve();
-        }, 500);
-      });
-      setStatus({ text: `Success ${new Date().toISOString()}`, loading: false });
-    } catch (e) {
-      caughtUp(e);
-    }
-  }
+  const handleClick = escalateAsync(async () => {
+    setStatus({ text: "Loading...", loading: true });
+    await new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        if (errorType === "1") {
+          reject(new Error(`Callback async error ${new Date().toISOString()}`));
+          return;
+        }
+        if (errorType === "2") {
+          reject(new CustomError(`Callback async error ${new Date().toISOString()}`));
+          return;
+        }
+        resolve();
+      }, 500);
+    });
+    setStatus({ text: `Success ${new Date().toISOString()}`, loading: false });
+  });
 
   return (
     <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 flex items-center gap-3">
@@ -44,7 +40,11 @@ export function ErrorTrigger({ errorType, enabledTrap }: Props) {
         Trigger async callback
       </button>
       {status && (
-        <p className={`text-sm ml-auto ${status.loading ? "text-gray-500 dark:text-gray-400" : "text-green-700 dark:text-green-400"}`}>{status.text}</p>
+        <p
+          className={`text-sm ml-auto ${status.loading ? "text-gray-500 dark:text-gray-400" : "text-green-700 dark:text-green-400"}`}
+        >
+          {status.text}
+        </p>
       )}
     </div>
   );

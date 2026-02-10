@@ -8,7 +8,13 @@ type Props = {
   searchParams: Promise<{ e?: string; trap?: string }>;
 };
 
-async function AsyncContent({ errorType, enabledTrap }: { errorType?: string; enabledTrap: boolean }): Promise<ReactElement> {
+async function AsyncContent({
+  errorType,
+  enabledTrap,
+}: {
+  errorType?: string;
+  enabledTrap: boolean;
+}): Promise<ReactElement> {
   const v = await new Promise<string>((resolve) => {
     setTimeout(() => {
       resolve(`hello ${new Date().toISOString()}`);
