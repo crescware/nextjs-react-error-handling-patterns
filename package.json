@@ -1,18 +1,19 @@
 {
   "name": "nextjs-react-error-handling-patterns",
-  "description": "",
   "version": "0.0.0",
-  "author": "",
+  "description": "",
   "keywords": [],
   "license": "MIT",
+  "author": "",
+  "type": "module",
   "main": "index.js",
-  "packageManager": "pnpm@10.28.2",
   "scripts": {
+    "format": "oxfmt --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "devDependencies": {
     "oxfmt": "^0.28.0",
     "oxlint": "^1.43.0"
-  }
+  },
+  "packageManager": "pnpm@10.28.2"
 }

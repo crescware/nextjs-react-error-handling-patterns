@@ -1,5 +1,5 @@
 {
-  "name": "rsc-without-suspense",
+  "name": "error-tsx-throws",
   "version": "0.1.0",
   "private": true,
   "scripts": {

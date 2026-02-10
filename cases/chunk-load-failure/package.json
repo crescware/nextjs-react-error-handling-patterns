@@ -1,5 +1,5 @@
 {
-  "name": "rsc-without-suspense",
+  "name": "chunk-load-failure",
   "version": "0.1.0",
   "private": true,
   "scripts": {

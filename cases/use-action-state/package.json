@@ -1,5 +1,5 @@
 {
-  "name": "rsc-without-suspense",
+  "name": "use-action-state",
   "version": "0.1.0",
   "private": true,
   "scripts": {

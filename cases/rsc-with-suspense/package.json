@@ -1,5 +1,5 @@
 {
-  "name": "rsc-without-suspense",
+  "name": "rsc-with-suspense",
   "version": "0.1.0",
   "private": true,
   "scripts": {
