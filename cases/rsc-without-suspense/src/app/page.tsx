@@ -30,10 +30,10 @@ export default async function RscPageRoot({ searchParams }: Props): Promise<Reac
 
   return (
     <PageLayout title="rsc-without-suspense">
-        <SuccessBanner />
-        <div className="px-6 py-5">
-          <p className="text-gray-900 dark:text-gray-100">{v}</p>
-        </div>
+      <SuccessBanner />
+      <div className="px-6 py-5">
+        <p className="text-gray-900 dark:text-gray-100">{v}</p>
+      </div>
     </PageLayout>
   );
 }

@@ -92,70 +92,11 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  cases/chunk-load-failure:
-    dependencies:
-      next:
-        specifier: 16.1.6
-        version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      react:
-        specifier: 19.2.3
-        version: 19.2.3
-      react-dom:
-        specifier: 19.2.3
-        version: 19.2.3(react@19.2.3)
-    devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.1.18
-      '@types/node':
-        specifier: ^20
-        version: 20.19.33
-      '@types/react':
-        specifier: ^19
-        version: 19.2.13
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.2.3(@types/react@19.2.13)
-      tailwindcss:
-        specifier: ^4
-        version: 4.1.18
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-
   cases/client-sync-throw:
     dependencies:
-      next:
-        specifier: 16.1.6
-        version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      react:
-        specifier: 19.2.3
-        version: 19.2.3
-      react-dom:
-        specifier: 19.2.3
-        version: 19.2.3(react@19.2.3)
-    devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.1.18
-      '@types/node':
-        specifier: ^20
-        version: 20.19.33
-      '@types/react':
-        specifier: ^19
-        version: 19.2.13
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.2.3(@types/react@19.2.13)
-      tailwindcss:
-        specifier: ^4
-        version: 4.1.18
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-
-  cases/client-use-reject:
-    dependencies:
+      lib:
+        specifier: workspace:*
+        version: link:../../shared/lib
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -408,6 +349,40 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  cases/use-client-promise:
+    dependencies:
+      lib:
+        specifier: workspace:*
+        version: link:../../shared/lib
+      next:
+        specifier: 16.1.6
+        version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react:
+        specifier: 19.2.3
+        version: 19.2.3
+      react-dom:
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.1.18
+      '@types/node':
+        specifier: ^20
+        version: 20.19.33
+      '@types/react':
+        specifier: ^19
+        version: 19.2.13
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.2.3(@types/react@19.2.13)
+      tailwindcss:
+        specifier: ^4
+        version: 4.1.18
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   cases/use-effect-async:
     dependencies:
       next:
@@ -441,6 +416,40 @@ importers:
 
   cases/use-effect-sync:
     dependencies:
+      next:
+        specifier: 16.1.6
+        version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react:
+        specifier: 19.2.3
+        version: 19.2.3
+      react-dom:
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.1.18
+      '@types/node':
+        specifier: ^20
+        version: 20.19.33
+      '@types/react':
+        specifier: ^19
+        version: 19.2.13
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.2.3(@types/react@19.2.13)
+      tailwindcss:
+        specifier: ^4
+        version: 4.1.18
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  cases/use-rsc-promise:
+    dependencies:
+      lib:
+        specifier: workspace:*
+        version: link:../../shared/lib
       next:
         specifier: 16.1.6
         version: 16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)

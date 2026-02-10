@@ -37,9 +37,9 @@ export default async function CallbackSyncPage({ searchParams }: Props) {
 
   return (
     <PageLayout title="callback-sync">
-        <Suspense fallback={<LoadingBanner />}>
-          <AsyncContent errorType={errorType} enabledTrap={enabledTrap} />
-        </Suspense>
+      <Suspense fallback={<LoadingBanner />}>
+        <AsyncContent errorType={errorType} enabledTrap={enabledTrap} />
+      </Suspense>
     </PageLayout>
   );
 }

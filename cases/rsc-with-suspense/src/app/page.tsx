@@ -41,9 +41,9 @@ export default async function RscPageRoot({ searchParams }: Props) {
 
   return (
     <PageLayout title="rsc-with-suspense">
-        <Suspense fallback={<LoadingBanner />}>
-          <AsyncContent errorType={errorType} />
-        </Suspense>
+      <Suspense fallback={<LoadingBanner />}>
+        <AsyncContent errorType={errorType} />
+      </Suspense>
     </PageLayout>
   );
 }
