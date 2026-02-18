@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rsc-with-suspense
 
-## Getting Started
+## What this case verifies
+- An async React Server Component can suspend for loading and still fail into `error.tsx` if the promise rejects.
+- `Suspense` fallback and error boundary serve different phases: loading vs failure.
 
-First, run the development server:
+## Why this matters
+- Server-side data fetching naturally mixes latency and failure.
+- You need separate UX paths for slow responses and hard errors.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Next.js / React cautions
+- `Suspense` does not catch errors; it only renders fallback while waiting.
+- Keep thrown server errors meaningful and sanitized for user-facing surfaces.
+- Verify retry/reset behavior from `error.tsx` when server work is retried.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Try it
+- `/?e=0`: resolves successfully after fallback.
+- `/?e=1`: rejects with `Error`, handled by `error.tsx`.
+- `/?e=2`: rejects with `CustomError`, handled by `error.tsx`.

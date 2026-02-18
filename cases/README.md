@@ -11,6 +11,26 @@ Most cases accept these query parameters to control error behavior:
 | `e`    | `0`, `1`, `2`| `0` = no error, `1` = `Error`, `2` = `CustomError` |
 | `trap` | `0`, `1`     | `1` = enable `useErrorTrap` (callback/effect cases only) |
 
+### Why `trap` exists in client-component cases
+
+In callback and `useEffect` cases, errors are produced in client-side event/effect execution, not during render.  
+React error boundaries (`error.tsx`) are designed to catch render-phase failures, so these errors are not reliably captured unless they are re-thrown from render.
+
+`useErrorTrap` provides that bridge:
+
+- It catches callback/effect errors (`escalate` / `escalateAsync`).
+- It stores the error in component state.
+- It re-throws on the next render, allowing the segment error boundary to handle it.
+
+That is why `trap=1` is used for:
+
+- `callback-sync`
+- `callback-async`
+- `use-effect-sync`
+- `use-effect-async`
+
+By contrast, `client-sync-throw` throws directly during render, so it does not need `trap`.
+
 ## Cases
 
 ### RSC (React Server Component)

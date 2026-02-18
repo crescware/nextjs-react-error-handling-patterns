@@ -5,22 +5,24 @@ export function useErrorTrap(enabledTrap: boolean) {
 
   const caughtUp = useCallback(
     (e: unknown) => {
-      if (!enabledTrap) throw e;
-      setError(e instanceof Error ? e : new Error(String(e)));
+      if (!enabledTrap) {
+        throw e;
+      }
+      if (!(e instanceof Error)) {
+        throw e;
+      }
+      setError(e);
     },
     [enabledTrap],
   );
 
   const escalate = useCallback(
-    <ARGS extends unknown[], RETURN>(
-      fn: (...args: ARGS) => RETURN,
-    ): ((...args: ARGS) => RETURN | void) => {
+    <ARGS extends unknown[]>(fn: (...args: ARGS) => void): ((...args: ARGS) => void) => {
       return (...args: ARGS) => {
         try {
-          return fn(...args);
+          fn(...args);
         } catch (e) {
           caughtUp(e);
-          return;
         }
       };
     },
@@ -28,15 +30,14 @@ export function useErrorTrap(enabledTrap: boolean) {
   );
 
   const escalateAsync = useCallback(
-    <ARGS extends unknown[], RETURN>(
-      fn: (...args: ARGS) => Promise<RETURN>,
-    ): ((...args: ARGS) => Promise<RETURN | void>) => {
+    <ARGS extends unknown[]>(
+      fn: (...args: ARGS) => Promise<void>,
+    ): ((...args: ARGS) => Promise<void>) => {
       return async (...args: ARGS) => {
         try {
-          return await fn(...args);
+          await fn(...args);
         } catch (e) {
           caughtUp(e);
-          return;
         }
       };
     },

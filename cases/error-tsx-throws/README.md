@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# error-tsx-throws
 
-## Getting Started
+## What this case verifies
+- If a segment `error.tsx` throws while handling another error, Next.js escalates to `global-error.tsx`.
+- The global boundary is the final safety net when local boundary rendering fails.
 
-First, run the development server:
+## Why this matters
+- Error UIs can fail due to unsafe assumptions, missing data guards, or secondary exceptions.
+- You need a hardened global fallback to prevent a blank or broken application shell.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Next.js / React cautions
+- Treat `error.tsx` as critical-path code: minimal dependencies, defensive rendering, no fragile parsing.
+- Never assume `error.message` shape beyond basic `Error` contract.
+- Keep `global-error.tsx` extremely robust because its blast radius is app-wide.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Try it
+- `/?e=0`: no page error, no boundary cascade.
+- `/?e=1`: page throws `Error`, then `error.tsx` re-throws and `global-error.tsx` handles.
+- `/?e=2`: same cascade with `CustomError` as original source.
