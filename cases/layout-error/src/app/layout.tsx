@@ -7,6 +7,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("RootLayout", new Date().toISOString());
   const headersList = await headers();
   const url = headersList.get("x-url");
   const errorType = url ? new URL(url).searchParams.get("e") : null;

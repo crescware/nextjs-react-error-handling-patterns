@@ -10,6 +10,7 @@ type Props = {
 };
 
 async function AsyncContent({ errorType }: { errorType?: string }): Promise<ReactElement> {
+  console.log("AsyncContent", new Date().toISOString());
   const v = await new Promise<string>((resolve, reject) => {
     setTimeout(() => {
       if (errorType === "1") {
@@ -31,7 +32,8 @@ async function AsyncContent({ errorType }: { errorType?: string }): Promise<Reac
   );
 }
 
-export default async function ErrorTsxThrowsPage({ searchParams }: Props) {
+export default async function PageRoot({ searchParams }: Props) {
+  console.log("PageRoot", new Date().toISOString());
   const { e: errorType } = await searchParams;
 
   return (

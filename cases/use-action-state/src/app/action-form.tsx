@@ -12,6 +12,7 @@ type Props = {
 };
 
 export function ActionForm({ errorType }: Props) {
+  console.log("ActionForm", new Date().toISOString());
   const [state, formAction, isPending] = useActionState(submitAction, null);
 
   return (

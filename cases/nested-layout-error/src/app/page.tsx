@@ -8,7 +8,8 @@ type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default async function RootPage({ searchParams }: Props) {
+export default async function PageRoot({ searchParams }: Props) {
+  console.log("PageRoot", new Date().toISOString());
   const params = await searchParams;
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {

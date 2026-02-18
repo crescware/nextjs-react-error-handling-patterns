@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function ThrowingComponent({ errorType }: Props) {
+  console.log("ThrowingComponent", new Date().toISOString());
   if (errorType === "1") {
     throw new Error(`Client sync throw error ${new Date().toISOString()}`);
   }

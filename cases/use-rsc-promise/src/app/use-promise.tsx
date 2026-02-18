@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function UsePromise({ dataPromise }: Props) {
+  console.log("UsePromise", new Date().toISOString());
   const v = use(dataPromise);
 
   return (

@@ -6,6 +6,7 @@ export default async function SubLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("SubLayout", new Date().toISOString());
   const headersList = await headers();
   const url = headersList.get("x-url");
   const errorType = url ? new URL(url).searchParams.get("e") : null;

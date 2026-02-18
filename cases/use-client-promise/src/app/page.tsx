@@ -7,7 +7,8 @@ type Props = {
   searchParams: Promise<{ e?: string }>;
 };
 
-export default async function UseClientPromisePage({ searchParams }: Props) {
+export default async function PageRoot({ searchParams }: Props) {
+  console.log("PageRoot", new Date().toISOString());
   const { e: errorType } = await searchParams;
 
   return (

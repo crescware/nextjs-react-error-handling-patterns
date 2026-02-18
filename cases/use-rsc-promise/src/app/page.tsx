@@ -24,7 +24,8 @@ function createDataPromise(errorType?: string): Promise<string> {
   });
 }
 
-export default async function ClientUseRejectPage({ searchParams }: Props) {
+export default async function PageRoot({ searchParams }: Props) {
+  console.log("PageRoot", new Date().toISOString());
   const { e: errorType } = await searchParams;
   const dataPromise = createDataPromise(errorType);
 

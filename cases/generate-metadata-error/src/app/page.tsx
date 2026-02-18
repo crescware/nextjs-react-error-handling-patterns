@@ -30,7 +30,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
-export default async function GenerateMetadataErrorPage() {
+export default async function PageRoot() {
+  console.log("PageRoot", new Date().toISOString());
   const v = `hello ${new Date().toISOString()}`;
 
   return (

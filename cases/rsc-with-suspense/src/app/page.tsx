@@ -10,7 +10,7 @@ type Props = {
 };
 
 async function AsyncContent({ errorType }: { errorType?: string }): Promise<ReactElement> {
-  console.log(`AsyncContent expectError=${errorType} ${new Date().toISOString()}`);
+  console.log("AsyncContent", new Date().toISOString());
 
   const v = await new Promise<string>((resolve, reject) => {
     setTimeout(() => {
@@ -35,10 +35,10 @@ async function AsyncContent({ errorType }: { errorType?: string }): Promise<Reac
   );
 }
 
-export default async function RscPageRoot({ searchParams }: Props) {
+export default async function PageRoot({ searchParams }: Props) {
   const { e: errorType } = await searchParams;
 
-  console.log(`RscPageRoot expectError=${errorType} ${new Date().toISOString()}`);
+  console.log("PageRoot", new Date().toISOString());
 
   return (
     <PageLayout title="rsc-with-suspense">

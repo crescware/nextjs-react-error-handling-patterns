@@ -9,10 +9,10 @@ type Props = {
   searchParams: Promise<{ e?: string }>;
 };
 
-export default async function RscPageRoot({ searchParams }: Props): Promise<ReactElement> {
+export default async function PageRoot({ searchParams }: Props): Promise<ReactElement> {
   const { e: errorType } = await searchParams;
 
-  console.log(`RscPageRoot expectError=${errorType} ${new Date().toISOString()}`);
+  console.log("PageRoot", new Date().toISOString());
 
   const v = await new Promise<string>((resolve, reject) => {
     setTimeout(() => {

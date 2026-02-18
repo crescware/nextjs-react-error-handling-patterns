@@ -13,6 +13,7 @@ type Props = {
 };
 
 export function EffectThrower({ errorType, enabledTrap }: Props) {
+  console.log("EffectThrower", new Date().toISOString());
   const { escalate } = useErrorTrap(enabledTrap);
   const [status, setStatus] = useState<string | null>(null);
 

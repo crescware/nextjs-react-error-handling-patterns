@@ -10,6 +10,7 @@ type Props = {
 };
 
 export function UsePromise({ errorType }: Props) {
+  console.log("UsePromise", new Date().toISOString());
   const dataPromise = useMemo(() => {
     return new Promise<string>((resolve, reject) => {
       setTimeout(() => {

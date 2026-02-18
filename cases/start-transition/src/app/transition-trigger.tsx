@@ -12,6 +12,7 @@ type Props = {
 };
 
 export function TransitionTrigger({ errorType }: Props) {
+  console.log("TransitionTrigger", new Date().toISOString());
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<string | null>(null);
 

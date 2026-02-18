@@ -13,6 +13,7 @@ type Props = {
 };
 
 export function ErrorTrigger({ errorType, enabledTrap }: Props) {
+  console.log("ErrorTrigger", new Date().toISOString());
   const { escalateAsync } = useErrorTrap(enabledTrap);
   const [status, setStatus] = useState<{ text: string; loading: boolean } | null>(null);
 
